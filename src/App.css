@@ -92,6 +92,18 @@ ol.posts-grid {
   opacity: 0.9;
 }
 
+/* Form Search */
+.posts-search {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 24px;
+  background-color: #1f1f1f;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  border: 1px solid #dddddd27;
+
+}
+
 /* Form Css */
 
 .posts-header {
