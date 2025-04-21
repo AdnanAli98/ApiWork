@@ -48,7 +48,8 @@ const Form = ({ data, setData, updateDataApi, setUpdateDataApi }) => {
         });
       });
       setAddData({ title: "", body: "" });
-      setUpdateDataApi({});     
+      setUpdateDataApi({});  
+      alert("Post updated successfully!");   
     } catch (error) {
       console.log("Failed to update post:", error);
     }
