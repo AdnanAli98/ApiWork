@@ -40,7 +40,8 @@ const Form = ({ data, setData, updateDataApi, setUpdateDataApi }) => {
 
   const UpdatePostData = async () => {
     try {
-      const response = await updatePost(updateDataApi.id, addData); 
+      const response = await updatePost(updateDataApi.id, addData);
+      console.log(response); 
       setData((prev) => {
         return prev.map((curElem) => {
           return curElem.id === updateDataApi.id ? response.data : curElem;

@@ -45,6 +45,14 @@ const Posts = () => {
     getPostsData();
   }, []);
 
+  useEffect(() => {
+    const filtered = data.filter((post) =>
+      post.title.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+    setFilteredData(filtered);
+  }, [data, searchQuery]);
+  
+
   return (
     <>
       <section className="posts-header">
