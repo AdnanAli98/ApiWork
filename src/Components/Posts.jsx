@@ -3,55 +3,67 @@ import { getPosts, deletePost } from "../api/PostApi";
 import Form from "./Form";
 
 const Posts = () => {
+  // State to store all posts data fetched from the API
   const [data, setData] = useState([]);
+
+  // State to store filtered posts data based on search query
   const [filteredData, setFilteredData] = useState([]);
+
+  // State to store data of the post being updated
   const [updateDataApi, setUpdateDataApi] = useState([]);
+
+  // State to store the current search query entered by the user
   const [searchQuery, setSearchQuery] = useState("");
 
+  // Function to fetch posts data from the API
   const getPostsData = async () => {
     try {
-      const response = await getPosts();
-      setData(response.data);
+      const response = await getPosts(); 
+      setData(response.data); 
       setFilteredData(response.data);
     } catch (error) {
-      console.error("Failed to fetch posts:", error);
+      console.error("Failed to fetch posts:", error); 
     }
   };
 
+  // Function to delete a post by its ID
   const handleDeletePost = async (id) => {
-    const response = await deletePost(id);
+    const response = await deletePost(id); 
     if (response.status === 200) {
-      const newUpdatedPosts = data.filter((curPost) => curPost.id !== id);
-      setData(newUpdatedPosts);
-      setFilteredData(newUpdatedPosts);
+      const newUpdatedPosts = data.filter((curPost) => curPost.id !== id); 
+      setData(newUpdatedPosts); 
+      setFilteredData(newUpdatedPosts); 
     } else {
-      console.error("Failed to delete post:", response.statusText);
+      console.error("Failed to delete post:", response.statusText); 
     }
   };
 
+  // Function to set the data of the post being updated
   const handleUpdatePost = (curElem) => setUpdateDataApi(curElem);
 
+  // Function to handle search input changes and filter posts
   const handleSearchChange = (e) => {
-    const query = e.target.value.toLowerCase();
-    setSearchQuery(query);
+    const query = e.target.value.toLowerCase(); 
+    setSearchQuery(query); 
 
     const filtered = data.filter((post) =>
-      post.title.toLowerCase().includes(query)
+      post.title.toLowerCase().includes(query) // Filter posts based on title
     );
-    setFilteredData(filtered);
+    setFilteredData(filtered); 
   };
 
+  // Fetch posts data when the component mounts
   useEffect(() => {
     getPostsData();
   }, []);
 
+  // Update filtered data whenever data or search query changes
   useEffect(() => {
     const filtered = data.filter((post) =>
-      post.title.toLowerCase().includes(searchQuery.toLowerCase())
+      post.title.toLowerCase().includes(searchQuery.toLowerCase()) 
     );
-    setFilteredData(filtered);
+    setFilteredData(filtered); 
   }, [data, searchQuery]);
-  
 
   return (
     <>
